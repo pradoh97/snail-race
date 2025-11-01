@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://vtel8wmabvdn"]
+
+[ext_resource type="Texture2D" uid="uid://bqshskxmw7x7g" path="res://coin.png" id="1_sxfpa"]
+
+[node name="SmallBet" type="Control"]
+layout_mode = 3
+anchor_right = 0.009000001
+anchor_bottom = 0.015000001
+offset_right = -0.36800098
+offset_bottom = 0.27999973
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 4
+size_flags_vertical = 7
+size_flags_stretch_ratio = 0.35
+texture = ExtResource("1_sxfpa")
+expand_mode = 1
+stretch_mode = 5

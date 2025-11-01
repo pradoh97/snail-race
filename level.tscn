@@ -1,11 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1sxs5ucwt5cw"]
+[gd_scene load_steps=13 format=3 uid="uid://d1sxs5ucwt5cw"]
 
 [ext_resource type="Script" uid="uid://djv7ewwf01a1e" path="res://level.gd" id="1_vonw3"]
 [ext_resource type="PackedScene" uid="uid://deu8jlcltfg5f" path="res://finish_line.tscn" id="2_oi3di"]
 [ext_resource type="PackedScene" uid="uid://djrkl3l50j1u8" path="res://racer/snail.tscn" id="3_0b4ue"]
+[ext_resource type="PackedScene" uid="uid://droahx1p02vyo" path="res://traps/strawberry.tscn" id="3_f2txt"]
+[ext_resource type="Script" uid="uid://bew22gi0e2nxs" path="res://ui.gd" id="5_f2txt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oi3di"]
 size = Vector2(20, 111)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f2txt"]
+
+[sub_resource type="Gradient" id="Gradient_f2txt"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.3547109, 0.24792469, 0.06798274, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1ainy"]
+gradient = SubResource("Gradient_f2txt")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0b4ue"]
+
+[sub_resource type="Gradient" id="Gradient_0b4ue"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.49491954, 0.35185727, 0.11118201, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f2txt"]
+gradient = SubResource("Gradient_0b4ue")
 
 [node name="Node" type="Node2D"]
 script = ExtResource("1_vonw3")
@@ -37,20 +57,145 @@ collision_layer = 8
 position = Vector2(0, 49.5)
 shape = SubResource("RectangleShape2D_oi3di")
 
+[node name="Traps" type="Node2D" parent="RaceTrack"]
+
+[node name="Strawberry" parent="RaceTrack/Traps" instance=ExtResource("3_f2txt")]
+position = Vector2(74, 0)
+
+[node name="Strawberry2" parent="RaceTrack/Traps" instance=ExtResource("3_f2txt")]
+position = Vector2(120, 46)
+
+[node name="Strawberry3" parent="RaceTrack/Traps" instance=ExtResource("3_f2txt")]
+position = Vector2(98, 100)
+
+[node name="Strawberry4" parent="RaceTrack/Traps" instance=ExtResource("3_f2txt")]
+position = Vector2(274, 100)
+
+[node name="Strawberry6" parent="RaceTrack/Traps" instance=ExtResource("3_f2txt")]
+position = Vector2(289, 0)
+
+[node name="Strawberry5" parent="RaceTrack/Traps" instance=ExtResource("3_f2txt")]
+position = Vector2(269, 50)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(193, 98)
-zoom = Vector2(2, 2)
+zoom = Vector2(2.5, 2.5)
 
 [node name="Racers" type="Node2D" parent="."]
 
 [node name="Snail" parent="Racers" instance=ExtResource("3_0b4ue")]
-position = Vector2(16, -12)
+position = Vector2(16, 0)
 
 [node name="Snail2" parent="Racers" instance=ExtResource("3_0b4ue")]
-position = Vector2(16, 38)
+modulate = Color(0, 0.6429526, 0.9807605, 1)
+position = Vector2(16, 50)
 
 [node name="Snail3" parent="Racers" instance=ExtResource("3_0b4ue")]
-position = Vector2(16, 89)
+modulate = Color(0.8407753, 0.2611684, 0, 1)
+position = Vector2(16, 100)
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("5_f2txt")
+
+[node name="Table" type="Control" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 3
+anchor_left = 0.23784722
+anchor_top = 0.7453704
+anchor_right = 0.7604167
+anchor_bottom = 1.0092592
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/Table"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027
+anchor_right = 0.133
+anchor_bottom = 1.0
+offset_left = -0.2539997
+offset_right = -0.06600189
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_f2txt")
+
+[node name="TextureRect" type="TextureRect" parent="UI/Table/PanelContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_1ainy")
+
+[node name="PanelContainer2" type="PanelContainer" parent="UI/Table"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.86
+anchor_right = 0.96700007
+anchor_bottom = 1.0
+offset_left = 0.27996826
+offset_right = -0.1340332
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_f2txt")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="UI/Table/PanelContainer2"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_1ainy")
+
+[node name="PanelContainer3" type="PanelContainer" parent="UI/Table"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.71300006
+offset_bottom = 0.07698822
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0b4ue")
+
+[node name="TextureRect" type="TextureRect" parent="UI/Table/PanelContainer3"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_f2txt")
+
+[node name="BetSpace" type="HBoxContainer" parent="UI/Table"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 66.695)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.71300006
+offset_bottom = 0.07698822
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Table/BetSpace"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="UI/Table/BetSpace/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Bet on Racer 1
+"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/Table/BetSpace"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="UI/Table/BetSpace/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Bet on Racer 2
+"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="UI/Table/BetSpace"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="UI/Table/BetSpace/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Bet on Racer 3
+"
 
 [connection signal="body_entered" from="RaceTrack/FinishLine" to="." method="_on_finish_line_body_entered"]
 [connection signal="body_entered" from="RaceTrack/FullStop" to="." method="_on_full_stop_body_entered"]

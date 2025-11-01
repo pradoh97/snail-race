@@ -1,0 +1,77 @@
+[gd_scene load_steps=2 format=3 uid="uid://8gwjogvjh4px"]
+
+[ext_resource type="Texture2D" uid="uid://bqshskxmw7x7g" path="res://coin.png" id="1_bjihy"]
+
+[node name="MediumBet" type="Control"]
+layout_mode = 3
+anchor_right = 0.010000001
+anchor_bottom = 0.022000002
+offset_right = 0.47999954
+offset_bottom = -0.25600147
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.78352344, 0.7835234, 0.7835234, 1)
+layout_mode = 0
+offset_left = 15.0
+offset_top = -15.0
+offset_right = 65.0
+offset_bottom = 35.0
+size_flags_horizontal = 4
+size_flags_vertical = 7
+size_flags_stretch_ratio = 0.35
+texture = ExtResource("1_bjihy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(0.8217887, 0.82178867, 0.82178867, 1)
+layout_mode = 0
+offset_left = 16.0
+offset_top = 4.0
+offset_right = 66.0
+offset_bottom = 54.0
+size_flags_horizontal = 4
+size_flags_vertical = 7
+size_flags_stretch_ratio = 0.35
+texture = ExtResource("1_bjihy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -7.0
+offset_top = 10.0
+offset_right = 43.0
+offset_bottom = 60.0
+size_flags_horizontal = 4
+size_flags_vertical = 7
+size_flags_stretch_ratio = 0.35
+texture = ExtResource("1_bjihy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -19.0
+offset_top = -1.0
+offset_right = 31.0
+offset_bottom = 49.0
+size_flags_horizontal = 4
+size_flags_vertical = 7
+size_flags_stretch_ratio = 0.35
+texture = ExtResource("1_bjihy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect5" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -26.0
+offset_right = 26.0
+offset_bottom = 24.0
+size_flags_horizontal = 4
+size_flags_vertical = 7
+size_flags_stretch_ratio = 0.35
+texture = ExtResource("1_bjihy")
+expand_mode = 1
+stretch_mode = 5
