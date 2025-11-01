@@ -11,15 +11,24 @@ var moving: bool = false
 var steps: int = 0
 var steps_taken: int = 0
 var race_over: bool = false
+var trapped: bool = false
+var consuming_trap: bool = false
+var trap_in_sight: Trap = null
 
 func _ready():
+	set_physics_process(false)
 	$MaxSpeedTimer.timeout.connect(_on_max_speed_timer_timeout)
 	$StopTimer.timeout.connect(_on_stop_timer_timeout)
 
 func _physics_process(_delta):
 	if not moving:
 		new_move()
-	move()
+
+	if not trapped:
+		move()
+	elif not consuming_trap:
+		consuming_trap = true
+		go_to_trap()
 
 func move():
 	if movement_enabled:
@@ -34,6 +43,14 @@ func move():
 		$MaxSpeedTimer.start()
 	if current_speed == 0 and $StopTimer.is_stopped():
 		$StopTimer.start()
+
+func go_to_trap():
+	var tween: Tween = create_tween()
+	tween.tween_property(self, "position", trap_in_sight.get_consume_area(), 1)
+	tween.finished.connect($AnimationPlayer.play.bind("eating"))
+
+func fall_for_trap():
+	return trap_in_sight and throw_dice() >= 5
 
 func new_move():
 	steps = throw_dice()
@@ -51,6 +68,8 @@ func _on_max_speed_timer_timeout():
 	steps_taken += 1
 
 func _on_stop_timer_timeout():
+	if not trapped and trap_in_sight:
+		trapped = fall_for_trap()
 	$StopTimer.wait_time = throw_dice() * timer_factor
 	if race_over:
 		set_physics_process(false)
@@ -61,3 +80,12 @@ func _on_stop_timer_timeout():
 	else:
 		movement_enabled = true
 		movement_over = false
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "eating":
+		trap_in_sight.queue_free()
+		trapped = false
+		consuming_trap = false
+		trap_in_sight = null
+		$AnimationPlayer.play("RESET")

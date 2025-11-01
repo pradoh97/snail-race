@@ -1,22 +1,122 @@
-[gd_scene load_steps=3 format=3 uid="uid://djrkl3l50j1u8"]
+[gd_scene load_steps=6 format=3 uid="uid://djrkl3l50j1u8"]
 
 [ext_resource type="Script" uid="uid://dv7vc8aetbiiw" path="res://racer/racer.gd" id="1_yngwn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u52ul"]
 size = Vector2(38, 26)
 
+[sub_resource type="Animation" id="Animation_yngwn"]
+resource_name = "eating"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.5666667, 0.8333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-15.371428, -11), Vector2(-11.99, -12.325), Vector2(-15.371428, -11), Vector2(-11.99, -12.325)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.56666666, 0.8333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.19198621771937624, 0.0, 0.19198621771937624]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.56666666, 0.8333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.054105207, 0.0, 0.054105207]
+}
+
+[sub_resource type="Animation" id="Animation_h2q60"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-15.371428, -11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lk8fo"]
+_data = {
+&"RESET": SubResource("Animation_h2q60"),
+&"eating": SubResource("Animation_yngwn")
+}
+
 [node name="Snail" type="AnimatableBody2D"]
 collision_mask = 14
 script = ExtResource("1_yngwn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-17, -11)
 shape = SubResource("RectangleShape2D_u52ul")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-19, 13, 13, 13, 15, 12, 16, 10, 13.16, 8, 15, 2, 16, 2, 16, 1, 15, 1, 13, 8, 12, 8, 10, 10, 11, 11, 9, 11, 8, 10, 8, 9, 10, 8, 11, 7, 12, 5, 12, 2, 11, -2, 10, -5, 7, -7, 9, -13, 4, -8, 1, -8, -2, -13, -2, -7, -4, -5, -11, -8, -7, -2, -8, 3, -8, 7, -7, 8, -5, 10)
+position = Vector2(-15.371428, -11)
+scale = Vector2(1.0857143, 1)
+polygon = PackedVector2Array(-19, 13, 13, 13, 11, 11, 9, 11, 8, 10, 8, 9, 10, 8, 11, 7, 12, 5, 12, 2, 11, -2.0000002, 10, -5, 7, -7, 9, -13, 4, -8, 1, -8, -2, -13, -2, -7, -3.9999995, -5, -11, -8, -6.9999995, -2.0000002, -7.9999995, 3, -7.9999995, 7, -6.9999995, 8, -4.9999995, 10)
+uv = PackedVector2Array(25.017542, -1.2379646, 14.034323, 0.05417919)
+
+[node name="Head" type="Polygon2D" parent="."]
+position = Vector2(-15.371428, -11)
+scale = Vector2(1.0857143, 1)
+polygon = PackedVector2Array(13, 13, 15, 12, 16, 10, 13.16, 8, 14.952637, 2, 16, 2, 16, 1, 15, 1, 13, 8, 12, 8, 10, 10, 8.6315775, 11)
 
 [node name="MaxSpeedTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="StopTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lk8fo")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=3 uid="uid://droahx1p02vyo"]
+
+[ext_resource type="Script" uid="uid://dp1ulumrhs2sq" path="res://strawberry.gd" id="1_cjyia"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2txt"]
+size = Vector2(23, 20)
+
+[node name="Strawberry" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_cjyia")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.5, 0)
+shape = SubResource("RectangleShape2D_f2txt")
+
+[node name="Leafs" type="Node2D" parent="."]
+position = Vector2(-5.5350003, 0)
+scale = Vector2(1.25, 1.5)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Leafs"]
+position = Vector2(0.1949997, 0.5)
+color = Color(6.858632e-07, 0.43135667, 1.92523e-07, 1)
+polygon = PackedVector2Array(3, -3, 2, -4, 1, -4.095, 2, -5, 2.5124245, -3.9751527, 3, -3)
+
+[node name="Polygon2D4" type="Polygon2D" parent="Leafs"]
+position = Vector2(-0.15000153, -4.115)
+rotation = 1.2147857
+color = Color(2.23808e-06, 0.49013478, 0, 1)
+polygon = PackedVector2Array(3, -3, 1.9999924, -3.4641037, 1, -4, 2.4999924, -4.3301315, 3, -3)
+
+[node name="Polygon2D5" type="Polygon2D" parent="Leafs"]
+position = Vector2(2.5850067, 1.305)
+rotation = -0.3123772
+scale = Vector2(0.99999994, 0.99999994)
+color = Color(3.7541986e-06, 0.6532019, 0, 1)
+polygon = PackedVector2Array(3, -3, 1.9999924, -3.4641037, 1, -4, 2.4999924, -4.3301315, 3, -3)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Leafs"]
+color = Color(3.7541986e-06, 0.6532019, 0, 1)
+polygon = PackedVector2Array(3, -3, 1, -3, 1.115, -3.25, 2, -3.13, 3, -3, 4, -3, 5, -3.245, 6, -3.185, 6, -3)
+
+[node name="Fruit" type="Polygon2D" parent="."]
+position = Vector2(-4.750001, 0)
+scale = Vector2(1.25, 1.5)
+color = Color(1, 0.15134355, 0.10833212, 1)
+polygon = PackedVector2Array(-1, -2, 2, 4, 3, 5, 4, 4.895, 5, 4, 8, -2, 7.79, -2.77, 7, -3, 0, -3, -0.615, -2.74)
+
+[node name="Seeds" type="Node2D" parent="."]
+position = Vector2(-5.75, 0)
+scale = Vector2(1.25, 1.5)
+
+[node name="Seed" type="Polygon2D" parent="Seeds"]
+polygon = PackedVector2Array(2.64, -1.65, 2.675, -1.435, 2.91, -1.37, 3, -1.685)
+
+[node name="Seed2" type="Polygon2D" parent="Seeds"]
+position = Vector2(1, 2)
+polygon = PackedVector2Array(2.64, -1.65, 2.675, -1.435, 2.91, -1.37, 3, -1.685)
+
+[node name="Seed3" type="Polygon2D" parent="Seeds"]
+position = Vector2(2, 0)
+polygon = PackedVector2Array(2.64, -1.65, 2.675, -1.435, 2.91, -1.37, 3, -1.685)
+
+[node name="Seed4" type="Polygon2D" parent="Seeds"]
+position = Vector2(0, 3)
+polygon = PackedVector2Array(2.64, -1.65, 2.675, -1.435, 2.91, -1.37, 3, -1.685)
+
+[node name="Seed5" type="Polygon2D" parent="Seeds"]
+position = Vector2(-1, 2)
+polygon = PackedVector2Array(2.64, -1.65, 2.675, -1.435, 2.91, -1.37, 3, -1.685)
+
+[node name="Seed6" type="Polygon2D" parent="Seeds"]
+position = Vector2(1, 5)
+polygon = PackedVector2Array(2.64, -1.65, 2.675, -1.435, 2.91, -1.37, 3, -1.685)
+
+[node name="Seed7" type="Polygon2D" parent="Seeds"]
+position = Vector2(3, 1)
+polygon = PackedVector2Array(2.64, -1.65, 2.675, -1.435, 2.91, -1.37, 3, -1.685)
+
+[node name="Seed8" type="Polygon2D" parent="Seeds"]
+position = Vector2(-1, -1)
+polygon = PackedVector2Array(2.64, -1.65, 2.675, -1.435, 2.91, -1.37, 3, -1.685)
+
+[node name="Seed9" type="Polygon2D" parent="Seeds"]
+position = Vector2(3.0000005, 3.3333335)
+polygon = PackedVector2Array(2.64, -1.65, 2.675, -1.435, 2.91, -1.37, 3, -1.685)
+
+[node name="EatArea" type="Marker2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
