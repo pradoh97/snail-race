@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://djrkl3l50j1u8"]
+
+[ext_resource type="Script" uid="uid://dv7vc8aetbiiw" path="res://racer/racer.gd" id="1_yngwn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u52ul"]
+size = Vector2(38, 26)
+
+[node name="Snail" type="AnimatableBody2D"]
+collision_mask = 14
+script = ExtResource("1_yngwn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_u52ul")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-19, 13, 13, 13, 15, 12, 16, 10, 13.16, 8, 15, 2, 16, 2, 16, 1, 15, 1, 13, 8, 12, 8, 10, 10, 11, 11, 9, 11, 8, 10, 8, 9, 10, 8, 11, 7, 12, 5, 12, 2, 11, -2, 10, -5, 7, -7, 9, -13, 4, -8, 1, -8, -2, -13, -2, -7, -4, -5, -11, -8, -7, -2, -8, 3, -8, 7, -7, 8, -5, 10)
+
+[node name="MaxSpeedTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StopTimer" type="Timer" parent="."]
+one_shot = true
