@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bqshskxmw7x7g" path="res://coin.png" id="1_sxfpa"]
 
 [node name="SmallBet" type="Control"]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 3
 anchor_right = 0.009000001
 anchor_bottom = 0.015000001
@@ -14,6 +15,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 7
 size_flags_stretch_ratio = 0.35
