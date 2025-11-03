@@ -15,6 +15,10 @@ run/main_scene="uid://d1sxs5ucwt5cw"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Globals="*res://globals.gd"
+
 [layer_names]
 
 2d_physics/layer_1="snail"
