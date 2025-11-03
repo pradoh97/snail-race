@@ -8,6 +8,7 @@ func _ready():
 	for racer: Racer in $Racers.get_children():
 		racer.racer_number = racer_number
 		racer_number += 1
+	place_traps()
 
 func _on_finish_line_body_entered(body):
 	if not winner:
@@ -24,3 +25,9 @@ func start_race():
 func _on_restart_pressed():
 	winner = ""
 	get_tree().reload_current_scene()
+
+func place_traps():
+	var random_position = 0
+	for trap: Trap in %Traps.get_children():
+		random_position = randi_range(%TrapsSafeMargins.get_child(0).global_position.x, %TrapsSafeMargins.get_child(1).global_position.x)
+		trap.global_position.x = random_position

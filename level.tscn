@@ -30,10 +30,19 @@ colors = PackedColorArray(0.49491954, 0.35185727, 0.11118201, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_f2txt"]
 gradient = SubResource("Gradient_0b4ue")
 
-[node name="Node" type="Node2D"]
+[node name="Level" type="Node2D"]
 script = ExtResource("1_vonw3")
 
 [node name="RaceTrack" type="Node2D" parent="."]
+
+[node name="TrapsSafeMargins" type="Node2D" parent="RaceTrack"]
+unique_name_in_owner = true
+
+[node name="Left" type="Marker2D" parent="RaceTrack/TrapsSafeMargins"]
+position = Vector2(47, 50)
+
+[node name="Right" type="Marker2D" parent="RaceTrack/TrapsSafeMargins"]
+position = Vector2(334, 50)
 
 [node name="Track1" type="Line2D" parent="RaceTrack"]
 points = PackedVector2Array(0, 0, 400, 0)
@@ -61,24 +70,25 @@ position = Vector2(0, 49.5)
 shape = SubResource("RectangleShape2D_oi3di")
 
 [node name="Traps" type="Node2D" parent="RaceTrack"]
+unique_name_in_owner = true
 
 [node name="Strawberry" parent="RaceTrack/Traps" instance=ExtResource("3_f2txt")]
-position = Vector2(74, 0)
+position = Vector2(73, 3)
 
 [node name="Strawberry2" parent="RaceTrack/Traps" instance=ExtResource("3_f2txt")]
-position = Vector2(120, 46)
+position = Vector2(120, 48)
 
 [node name="Strawberry3" parent="RaceTrack/Traps" instance=ExtResource("3_f2txt")]
 position = Vector2(98, 100)
 
 [node name="Strawberry4" parent="RaceTrack/Traps" instance=ExtResource("3_f2txt")]
-position = Vector2(274, 100)
+position = Vector2(274, 98)
 
 [node name="Strawberry6" parent="RaceTrack/Traps" instance=ExtResource("3_f2txt")]
-position = Vector2(289, 0)
+position = Vector2(289, -3)
 
 [node name="Strawberry5" parent="RaceTrack/Traps" instance=ExtResource("3_f2txt")]
-position = Vector2(269, 50)
+position = Vector2(269, 52)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(193, 98)
