@@ -3,6 +3,7 @@ class_name Racer
 
 @export var max_speed: float = 0.25
 @export var acceleration: float = 0.025
+var racer_number: int = 0
 var timer_factor = 0.1
 var current_speed: float = 0
 var movement_enabled: bool = true
