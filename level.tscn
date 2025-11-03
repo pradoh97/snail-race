@@ -44,16 +44,19 @@ position = Vector2(47, 50)
 [node name="Right" type="Marker2D" parent="RaceTrack/TrapsSafeMargins"]
 position = Vector2(334, 50)
 
-[node name="Track1" type="Line2D" parent="RaceTrack"]
+[node name="Tracks" type="Node2D" parent="RaceTrack"]
+unique_name_in_owner = true
+
+[node name="Track1" type="Line2D" parent="RaceTrack/Tracks"]
 points = PackedVector2Array(0, 0, 400, 0)
 default_color = Color(0.73119575, 0.5272471, 0.15017584, 1)
 
-[node name="Track2" type="Line2D" parent="RaceTrack"]
+[node name="Track2" type="Line2D" parent="RaceTrack/Tracks"]
 position = Vector2(0, 50)
 points = PackedVector2Array(0, 0, 400, 0)
 default_color = Color(0.73119575, 0.5272471, 0.15017584, 1)
 
-[node name="Track3" type="Line2D" parent="RaceTrack"]
+[node name="Track3" type="Line2D" parent="RaceTrack/Tracks"]
 position = Vector2(0, 100)
 points = PackedVector2Array(0, 0, 400, 0)
 default_color = Color(0.73119575, 0.5272471, 0.15017584, 1)

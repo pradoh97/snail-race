@@ -3,9 +3,14 @@ class_name Racer
 
 @export var max_speed: float = 0.25
 @export var acceleration: float = 0.025
+var original_position: Vector2
+var vertical_boundaries: = {
+	"bottom": 0,
+	"top": 0
+}
 var racer_number: int = 0
 var timer_factor = 0.1
-var current_speed: float = 0
+var current_speed: Vector2 = Vector2.ZERO
 var movement_enabled: bool = true
 var movement_over: bool = false
 var moving: bool = false
@@ -15,8 +20,10 @@ var race_over: bool = false
 var trapped: bool = false
 var consuming_trap: bool = false
 var trap_in_sight: Trap = null
+var vertical_direction = 0
 
 func _ready():
+	original_position = global_position
 	set_physics_process(false)
 	$MaxSpeedTimer.timeout.connect(_on_max_speed_timer_timeout)
 	$StopTimer.timeout.connect(_on_stop_timer_timeout)
@@ -33,16 +40,24 @@ func _physics_process(_delta):
 
 func move():
 	if movement_enabled:
-		current_speed = min(current_speed + acceleration, max_speed)
+		var vector_component = min(current_speed.x + acceleration, max_speed)
+		current_speed = Vector2(vector_component, vector_component * randf_range(0.1, 1))
 	if movement_over:
-		current_speed = max(0, current_speed - acceleration)
+		vertical_direction = randi_range(-1, 1)
+		var vector_component = max(0, current_speed.x - acceleration)
+		current_speed = Vector2(vector_component, vector_component * randf_range(0.1, 1))
 
-	constant_linear_velocity.x = current_speed
-	position.x += constant_linear_velocity.x
+	constant_linear_velocity = current_speed
+	if vertical_direction == 1 and global_position.y >= vertical_boundaries.bottom:
+		constant_linear_velocity.y = 0
+	if vertical_direction == -1 and global_position.y <= vertical_boundaries.top:
+		constant_linear_velocity.y = 0
+	position += Vector2(constant_linear_velocity.x, constant_linear_velocity.y * vertical_direction)
 
-	if current_speed >= max_speed and $MaxSpeedTimer.is_stopped():
+
+	if current_speed.x >= max_speed and $MaxSpeedTimer.is_stopped():
 		$MaxSpeedTimer.start()
-	if current_speed == 0 and $StopTimer.is_stopped():
+	if current_speed.x == 0 and $StopTimer.is_stopped():
 		$StopTimer.start()
 
 func go_to_trap():
@@ -58,6 +73,7 @@ func new_move():
 	moving = true
 	$MaxSpeedTimer.wait_time = throw_dice()*timer_factor
 	$StopTimer.wait_time = throw_dice()*timer_factor
+	vertical_direction = randi_range(-1, 1)
 
 func throw_dice():
 	return [1, 1, 2, 2, 3, 4, 5, 6].pick_random()

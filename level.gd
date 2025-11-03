@@ -7,6 +7,9 @@ func _ready():
 	var racer_number = 1
 	for racer: Racer in $Racers.get_children():
 		racer.racer_number = racer_number
+		var racer_track = %Tracks.get_child(racer_number - 1)
+		racer.vertical_boundaries.bottom = racer_track.global_position.y + racer_track.width/2
+		racer.vertical_boundaries.top = racer_track.global_position.y - racer_track.width/2
 		racer_number += 1
 	place_traps()
 
