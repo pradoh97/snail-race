@@ -88,6 +88,7 @@ zoom = Vector2(2.5, 2.5)
 
 [node name="Snail" parent="Racers" instance=ExtResource("3_0b4ue")]
 position = Vector2(16, 0)
+max_speed = 50.0
 
 [node name="Snail2" parent="Racers" instance=ExtResource("3_0b4ue")]
 modulate = Color(0, 0.6429526, 0.9807605, 1)

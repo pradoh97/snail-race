@@ -29,8 +29,11 @@ func calculate_pool(winner_node: Racer):
 		for racer: Racer in $Racers.get_children():
 			total_bets += snails_bet_pool.player_1[str(racer.racer_number)].bet_amount
 			total_bets += snails_bet_pool.player_2[str(racer.racer_number)].bet_amount
-		snails_bet_pool.player_1[str(winner_node.racer_number)].participation = float(snails_bet_pool.player_1[str(winner_node.racer_number)].bet_amount)/float(winner_total_bets)
-		snails_bet_pool.player_2[str(winner_node.racer_number)].participation = float(snails_bet_pool.player_2[str(winner_node.racer_number)].bet_amount)/float(winner_total_bets)
+
+		if not snails_bet_pool.player_1[str(winner_node.racer_number)].bet_amount == 0:
+			snails_bet_pool.player_1[str(winner_node.racer_number)].participation = float(snails_bet_pool.player_1[str(winner_node.racer_number)].bet_amount)/float(winner_total_bets)
+		if not snails_bet_pool.player_2[str(winner_node.racer_number)].bet_amount == 0:
+			snails_bet_pool.player_2[str(winner_node.racer_number)].participation = float(snails_bet_pool.player_2[str(winner_node.racer_number)].bet_amount)/float(winner_total_bets)
 		snails_bet_pool.player_2.reward = roundi(total_bets * snails_bet_pool.player_2[str(winner_node.racer_number)].participation)
 		snails_bet_pool.player_1.reward = roundi(total_bets * snails_bet_pool.player_1[str(winner_node.racer_number)].participation)
 		snails_bet_pool.player_1.total_bet = snails_bet_pool.player_1["1"].bet_amount + snails_bet_pool.player_1["2"].bet_amount + snails_bet_pool.player_1["3"].bet_amount
