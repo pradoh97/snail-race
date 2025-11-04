@@ -22,7 +22,7 @@ func _on_racer_bet_options_bet_increased():
 		update_balance()
 
 
-func _on_racer_bet_options_place_trap(racer: int):
+func _on_racer_bet_options_place_trap(_racer: int):
 	if current_balance >= 5:
 		current_balance -= 5
 		update_balance()

@@ -101,8 +101,9 @@ func _on_stop_timer_timeout():
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "eating":
-		trap_in_sight.queue_free()
+		if trap_in_sight:
+			trap_in_sight.queue_free()
 		trapped = false
 		consuming_trap = false
 		trap_in_sight = null
-		$AnimationPlayer.play("RESET")
+		$AnimationPlayer.play("moving")

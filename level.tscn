@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://eh8txnyk01aj" path="res://player_options/player_options.tscn" id="6_n6hdu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oi3di"]
-size = Vector2(20, 111)
+size = Vector2(20, 142)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ainy"]
 content_margin_left = 16.0
@@ -35,29 +35,33 @@ position = Vector2(334, 50)
 unique_name_in_owner = true
 
 [node name="Track1" type="Line2D" parent="RaceTrack/Tracks"]
+position = Vector2(0, 3)
+scale = Vector2(1, 1.3)
 points = PackedVector2Array(0, 0, 400, 0)
 default_color = Color(0.73119575, 0.5272471, 0.15017584, 1)
 
 [node name="Track2" type="Line2D" parent="RaceTrack/Tracks"]
-position = Vector2(0, 50)
-points = PackedVector2Array(0, 0, 400, 0)
+position = Vector2(0, 69)
+scale = Vector2(1, 1.3)
+points = PackedVector2Array(0, 0, 122.89734, 0, 400, 0)
 default_color = Color(0.73119575, 0.5272471, 0.15017584, 1)
 
 [node name="Track3" type="Line2D" parent="RaceTrack/Tracks"]
-position = Vector2(0, 100)
+position = Vector2(0, 135)
+scale = Vector2(1, 1.3)
 points = PackedVector2Array(0, 0, 400, 0)
 default_color = Color(0.73119575, 0.5272471, 0.15017584, 1)
 
 [node name="FinishLine" parent="RaceTrack" instance=ExtResource("2_oi3di")]
 z_index = 1
-position = Vector2(380, 50)
+position = Vector2(380, 40)
 
 [node name="FullStop" type="Area2D" parent="RaceTrack"]
 position = Vector2(407, 0)
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RaceTrack/FullStop"]
-position = Vector2(0, 49.5)
+position = Vector2(0, 65)
 shape = SubResource("RectangleShape2D_oi3di")
 
 [node name="Traps" type="Node2D" parent="RaceTrack"]
@@ -67,37 +71,36 @@ unique_name_in_owner = true
 position = Vector2(73, 3)
 
 [node name="Strawberry2" parent="RaceTrack/Traps" instance=ExtResource("3_f2txt")]
-position = Vector2(120, 48)
+position = Vector2(120, 64)
 
 [node name="Strawberry3" parent="RaceTrack/Traps" instance=ExtResource("3_f2txt")]
-position = Vector2(98, 100)
+position = Vector2(98, 132)
 
 [node name="Strawberry4" parent="RaceTrack/Traps" instance=ExtResource("3_f2txt")]
-position = Vector2(274, 98)
+position = Vector2(274, 130)
 
 [node name="Strawberry6" parent="RaceTrack/Traps" instance=ExtResource("3_f2txt")]
 position = Vector2(289, -3)
 
 [node name="Strawberry5" parent="RaceTrack/Traps" instance=ExtResource("3_f2txt")]
-position = Vector2(269, 52)
+position = Vector2(269, 68)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(193, 98)
-zoom = Vector2(2.5, 2.5)
+position = Vector2(193, 142)
+zoom = Vector2(2.3, 2.3)
 
 [node name="Racers" type="Node2D" parent="."]
 
 [node name="Snail" parent="Racers" instance=ExtResource("3_0b4ue")]
-position = Vector2(16, 0)
-max_speed = 50.0
+position = Vector2(16, 4)
 
 [node name="Snail2" parent="Racers" instance=ExtResource("3_0b4ue")]
 modulate = Color(0, 0.6429526, 0.9807605, 1)
-position = Vector2(16, 50)
+position = Vector2(16, 70)
 
 [node name="Snail3" parent="Racers" instance=ExtResource("3_0b4ue")]
 modulate = Color(0.8407753, 0.2611684, 0, 1)
-position = Vector2(16, 100)
+position = Vector2(16, 136)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("5_f2txt")
@@ -164,11 +167,18 @@ text = "
 Up for another round?"
 horizontal_alignment = 1
 
-[node name="Restart" type="Button" parent="UI/GameOver/VBoxContainer/VBoxContainer"]
+[node name="NextRace" type="Button" parent="UI/GameOver/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "   It can't end in a loss   "
+
+[node name="Restart" type="Button" parent="UI/GameOver/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Restart game"
 
 [node name="Quit" type="Button" parent="UI/GameOver/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -215,6 +225,8 @@ text = "    RACE!    "
 
 [connection signal="body_entered" from="RaceTrack/FinishLine" to="." method="_on_finish_line_body_entered"]
 [connection signal="body_entered" from="RaceTrack/FullStop" to="." method="_on_full_stop_body_entered"]
+[connection signal="next_race_pressed" from="UI" to="." method="_on_ui_next_race_pressed"]
+[connection signal="pressed" from="UI/GameOver/VBoxContainer/VBoxContainer/NextRace" to="UI" method="_on_next_race_pressed"]
 [connection signal="pressed" from="UI/GameOver/VBoxContainer/VBoxContainer/Restart" to="UI" method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/GameOver/VBoxContainer/VBoxContainer/Quit" to="UI" method="_on_quit_pressed"]
 [connection signal="place_trap" from="UI/PlayerOptions" to="." method="_on_player_options_place_trap"]

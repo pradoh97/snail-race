@@ -35,9 +35,12 @@ func get_bets():
 
 func _on_balance_balance_drained():
 	disable_increases()
+	disable_traps_place()
 
 func _on_balance_balance_restored():
 	enable_decreases()
+	if get_balance() >= 5:
+		enable_traps_place()
 
 func start_race():
 	if player_name == "Player 1":
@@ -49,6 +52,12 @@ func start_race():
 func disable_options():
 	disable_increases()
 	disable_decreases()
+	disable_traps_place()
+
+func enable_options():
+	enable_increases()
+	enable_decreases()
+	enable_traps_place()
 
 func disable_increases():
 	$VBoxContainer/HboxContainer/RacerBetOptions.disable_increase()
@@ -70,6 +79,15 @@ func enable_decreases():
 	$VBoxContainer/HboxContainer/RacerBetOptions2.enable_decrease()
 	$VBoxContainer/HboxContainer/RacerBetOptions3.enable_decrease()
 
+func disable_traps_place():
+	$VBoxContainer/HboxContainer/RacerBetOptions.disable_trap_place()
+	$VBoxContainer/HboxContainer/RacerBetOptions2.disable_trap_place()
+	$VBoxContainer/HboxContainer/RacerBetOptions3.disable_trap_place()
+
+func enable_traps_place():
+	$VBoxContainer/HboxContainer/RacerBetOptions.enable_trap_place()
+	$VBoxContainer/HboxContainer/RacerBetOptions2.enable_trap_place()
+	$VBoxContainer/HboxContainer/RacerBetOptions3.enable_trap_place()
 
 func _on_racer_bet_options_place_trap(racer: int):
 	if %Balance.current_balance >= 5:

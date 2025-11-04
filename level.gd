@@ -4,7 +4,6 @@ var winner: String = ""
 var snails_bet_pool = {}
 
 func _ready():
-	$UI.restart_pressed.connect(_on_restart_pressed)
 	var racer_number = 1
 	for racer: Racer in $Racers.get_children():
 		racer.racer_number = racer_number
@@ -50,10 +49,6 @@ func start_race(bets_pool):
 		$UI/PlayerOptions.start_race()
 		$UI/PlayerOptions2.start_race()
 
-func _on_restart_pressed():
-	winner = ""
-	get_tree().reload_current_scene()
-
 
 func place_traps():
 	var random_position = 0
@@ -69,3 +64,8 @@ func _on_player_options_place_trap(racer):
 	vertical_position = %Tracks.get_child(racer - 1).global_position.y
 	trap.global_position = Vector2(random_position, vertical_position)
 	%Traps.add_child(trap)
+
+
+func _on_ui_next_race_pressed():
+	winner = ""
+	get_tree().reload_current_scene()

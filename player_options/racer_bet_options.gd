@@ -25,13 +25,21 @@ func disable_increase():
 func enable_increase():
 	$IncreaseBet.disabled = false
 
+func disable_trap_place():
+	$PlaceTrap.disabled = true
+
+func enable_trap_place():
+	$PlaceTrap.disabled = false
+
 func disable_all():
 	disable_decrease()
 	disable_increase()
+	disable_trap_place()
 
 func enable_all():
 	enable_decrease()
 	enable_increase()
+	enable_trap_place()
 
 func _on_increase_bet_pressed():
 	bet_amount += 1

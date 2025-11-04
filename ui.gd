@@ -1,7 +1,7 @@
 extends CanvasLayer
 class_name UI
 
-signal restart_pressed
+signal next_race_pressed
 
 var player_1_balance_label: Label
 var player_2_balance_label: Label
@@ -15,6 +15,7 @@ func start_race():
 	bets_pool.player_2 = $PlayerOptions2.get_bets()
 	$GameOver.visible = false
 	get_parent().start_race(bets_pool)
+	disable_player_options()
 
 func race_over(winner: String, snails_bet_pool):
 	$GameOver.visible = true
@@ -33,15 +34,38 @@ func race_over(winner: String, snails_bet_pool):
 		$GameOver/VBoxContainer/MoneyResultPlayer2.text = "Break even for player 2"
 	else:
 		$GameOver/VBoxContainer/MoneyResultPlayer2.text = "Player 2 lost $" + str(player_2_gains)
+	if Globals.money.player_1 == 0:
+		$GameOver/VBoxContainer/MoneyResultPlayer1.text += " also... you lost all your money."
+	if Globals.money.player_2 == 0:
+		$GameOver/VBoxContainer/MoneyResultPlayer2.text += " also... you lost all your money."
+	for player in Globals.money:
+		if Globals.money[player] == 0:
+			%Restart.visible = true
+			%NextRace.visible = false
+
+func disable_player_options():
+	$PlayerOptions.disable_options()
+	$PlayerOptions2.disable_options()
+
+func enable_player_options():
+	$PlayerOptions.enable_options()
+	$PlayerOptions2.enable_options()
 
 func _on_quit_pressed():
 	get_tree().quit()
 
 
-func _on_restart_pressed():
+func _on_next_race_pressed():
 	$GameOver.visible = false
-	restart_pressed.emit()
+	next_race_pressed.emit()
+	enable_player_options()
 
 
 func _on_start_race_pressed():
 	start_race()
+
+
+func _on_restart_pressed():
+	for player in Globals.money:
+		Globals.money[player] = 20
+	next_race_pressed.emit()
