@@ -1,5 +1,6 @@
 class_name PlayerOptions extends PanelContainer
 
+signal place_trap(racer: int)
 @export var player_name: String = "Player 1"
 
 func _ready():
@@ -68,3 +69,8 @@ func enable_decreases():
 	$VBoxContainer/HboxContainer/RacerBetOptions.enable_decrease()
 	$VBoxContainer/HboxContainer/RacerBetOptions2.enable_decrease()
 	$VBoxContainer/HboxContainer/RacerBetOptions3.enable_decrease()
+
+
+func _on_racer_bet_options_place_trap(racer: int):
+	if %Balance.current_balance >= 5:
+		place_trap.emit(racer)

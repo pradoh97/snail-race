@@ -216,4 +216,6 @@ text = "    RACE!    "
 [connection signal="body_entered" from="RaceTrack/FullStop" to="." method="_on_full_stop_body_entered"]
 [connection signal="pressed" from="UI/GameOver/VBoxContainer/VBoxContainer/Restart" to="UI" method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/GameOver/VBoxContainer/VBoxContainer/Quit" to="UI" method="_on_quit_pressed"]
+[connection signal="place_trap" from="UI/PlayerOptions" to="." method="_on_player_options_place_trap"]
+[connection signal="place_trap" from="UI/PlayerOptions2" to="." method="_on_player_options_place_trap"]
 [connection signal="pressed" from="UI/StartRace" to="UI" method="_on_start_race_pressed"]

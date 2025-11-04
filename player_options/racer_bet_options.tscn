@@ -56,6 +56,16 @@ action_mode = 0
 button_mask = 3
 text = "-"
 
+[node name="PlaceTrap" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_0o4ji")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_wfvgo")
+action_mode = 0
+button_mask = 3
+text = "Place trap $5"
+
 [node name="Money" type="HBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 7
@@ -82,3 +92,4 @@ text = "0"
 
 [connection signal="pressed" from="IncreaseBet" to="." method="_on_increase_bet_pressed"]
 [connection signal="pressed" from="DecreaseBet" to="." method="_on_decrease_bet_pressed"]
+[connection signal="pressed" from="PlaceTrap" to="." method="_on_place_trap_pressed"]

@@ -5,8 +5,9 @@ class_name RacerBetOptions
 var bet_amount: = 0
 
 
-signal bet_increased()
-signal bet_decreased()
+signal bet_increased
+signal bet_decreased
+signal place_trap(racer: int)
 
 func _ready():
 	disable_decrease()
@@ -49,3 +50,8 @@ func _on_decrease_bet_pressed():
 
 	if bet_amount == 0:
 		disable_decrease()
+
+
+func _on_place_trap_pressed():
+	$Money/HBoxContainer/CurrentMoney.text = str(bet_amount)
+	place_trap.emit(int(racer_name[-1]))
