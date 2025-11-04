@@ -10,13 +10,40 @@ func _ready():
 		%Balance.current_balance = str(Globals.money.player_2)
 	%Balance.update_balance()
 
+func get_balance():
+	return %Balance.current_balance
+
+func get_bets():
+	return {
+		"1": {
+			"bet_amount": $VBoxContainer/HboxContainer/RacerBetOptions.bet_amount,
+			"participation": 0.0,
+			"reward": 0,
+		},
+		"2": {
+			"bet_amount": $VBoxContainer/HboxContainer/RacerBetOptions2.bet_amount,
+			"participation": 0.0,
+			"reward": 0,
+		},
+		"3": {
+			"bet_amount": $VBoxContainer/HboxContainer/RacerBetOptions3.bet_amount,
+			"participation": 0.0,
+			"reward": 0,
+		},
+	}
 
 func _on_balance_balance_drained():
 	disable_increases()
 
-
 func _on_balance_balance_restored():
 	enable_decreases()
+
+func start_race():
+	if player_name == "Player 1":
+		Globals.money.player_1 = get_balance()
+	if player_name == "Player 2":
+		Globals.money.player_2 = get_balance()
+	disable_options()
 
 func disable_options():
 	disable_increases()

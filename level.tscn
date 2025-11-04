@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1sxs5ucwt5cw"]
+[gd_scene load_steps=9 format=3 uid="uid://d1sxs5ucwt5cw"]
 
 [ext_resource type="Script" uid="uid://djv7ewwf01a1e" path="res://level.gd" id="1_vonw3"]
 [ext_resource type="PackedScene" uid="uid://deu8jlcltfg5f" path="res://finish_line.tscn" id="2_oi3di"]
@@ -9,6 +9,13 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oi3di"]
 size = Vector2(20, 111)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ainy"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.72777236, 0.3263314, 0.25760457, 1)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_vonw3")
@@ -95,12 +102,12 @@ script = ExtResource("5_f2txt")
 
 [node name="GameOver" type="PanelContainer" parent="UI"]
 anchors_preset = -1
-anchor_left = 0.31800002
-anchor_top = 0.31800002
+anchor_left = 0.321
+anchor_top = 0.296
 anchor_right = 0.68200004
 anchor_bottom = 0.68200004
-offset_left = -0.11380005
-offset_top = -0.06401062
+offset_left = -3.5697937
+offset_top = 0.19200134
 offset_right = 0.113708496
 offset_bottom = 0.063964844
 grow_horizontal = 2
@@ -109,7 +116,7 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="UI/GameOver"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 28
 text = "Race over"
 horizontal_alignment = 1
 
@@ -130,7 +137,12 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MoneyResult" type="Label" parent="UI/GameOver/VBoxContainer"]
+[node name="MoneyResultPlayer1" type="Label" parent="UI/GameOver/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="MoneyResultPlayer2" type="Label" parent="UI/GameOver/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 horizontal_alignment = 1
@@ -177,6 +189,8 @@ offset_left = -416.896
 offset_top = -210.27203
 offset_right = 0.104003906
 offset_bottom = -0.2720337
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ainy")
+player_name = "Player 2"
 
 [node name="StartRace" type="Button" parent="UI"]
 anchors_preset = -1
@@ -197,4 +211,4 @@ text = "    RACE!    "
 [connection signal="body_entered" from="RaceTrack/FullStop" to="." method="_on_full_stop_body_entered"]
 [connection signal="pressed" from="UI/GameOver/VBoxContainer/VBoxContainer/Restart" to="UI" method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/GameOver/VBoxContainer/VBoxContainer/Quit" to="UI" method="_on_quit_pressed"]
-[connection signal="pressed" from="UI/StartRace" to="." method="_on_start_race_pressed"]
+[connection signal="pressed" from="UI/StartRace" to="UI" method="_on_start_race_pressed"]
