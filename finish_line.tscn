@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://deu8jlcltfg5f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xgho"]
-size = Vector2(10, 164.5)
+size = Vector2(24, 322)
 
 [sub_resource type="Gradient" id="Gradient_u52ul"]
 offsets = PackedFloat32Array(0)
@@ -15,20 +15,22 @@ fill_to = Vector2(0, 1)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 24.75)
 shape = SubResource("RectangleShape2D_5xgho")
 
 [node name="Line2D" type="Line2D" parent="."]
-position = Vector2(14, 26)
-scale = Vector2(2.4, 1.382353)
+scale = Vector2(2.4, 2.7941175)
 points = PackedVector2Array(0, -58, 0, 58)
 texture = SubResource("GradientTexture2D_vonw3")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 25.0
-offset_top = -51.830135
-offset_right = 183.68042
-offset_bottom = -28.830135
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = -161.64462
+offset_right = 336.96967
+offset_bottom = -138.64462
+grow_vertical = 0
 rotation = 1.5707964
 theme_override_font_sizes/font_size = 16
 text = "FINISH LINE"
