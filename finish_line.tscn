@@ -18,5 +18,16 @@ collision_layer = 2
 shape = SubResource("RectangleShape2D_5xgho")
 
 [node name="Line2D" type="Line2D" parent="."]
+position = Vector2(14, 0)
+scale = Vector2(2.4, 1)
 points = PackedVector2Array(0, -58, 0, 58)
 texture = SubResource("GradientTexture2D_vonw3")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 25.0
+offset_top = -45.0
+offset_right = 116.0
+offset_bottom = -22.0
+rotation = 1.5707964
+theme_override_font_sizes/font_size = 16
+text = "FINISH LINE"

@@ -49,6 +49,7 @@ points = PackedVector2Array(0, 0, 400, 0)
 default_color = Color(0.73119575, 0.5272471, 0.15017584, 1)
 
 [node name="FinishLine" parent="RaceTrack" instance=ExtResource("2_oi3di")]
+z_index = 1
 position = Vector2(380, 50)
 
 [node name="FullStop" type="Area2D" parent="RaceTrack"]
