@@ -1,6 +1,7 @@
 extends Node2D
 
 var winner: String = ""
+var snails_bet_pool = {}
 
 func _ready():
 	$UI.restart_pressed.connect(_on_restart_pressed)
@@ -16,14 +17,37 @@ func _ready():
 func _on_finish_line_body_entered(body):
 	if not winner:
 		winner = str(body.racer_number)
-		$UI.race_over(winner)
+		calculate_pool(body)
+		$UI.race_over(winner, snails_bet_pool)
 
 func _on_full_stop_body_entered(body):
 	(body as Racer).race_over = true
 
-func start_race():
+func calculate_pool(winner_node: Racer):
+		var winner_total_bets = snails_bet_pool.player_1[str(winner_node.racer_number)].bet_amount + snails_bet_pool.player_2[str(winner_node.racer_number)].bet_amount
+		var total_bets = 0
+		for racer: Racer in $Racers.get_children():
+			total_bets += snails_bet_pool.player_1[str(racer.racer_number)].bet_amount
+			total_bets += snails_bet_pool.player_2[str(racer.racer_number)].bet_amount
+
+		if not snails_bet_pool.player_1[str(winner_node.racer_number)].bet_amount == 0:
+			snails_bet_pool.player_1[str(winner_node.racer_number)].participation = float(snails_bet_pool.player_1[str(winner_node.racer_number)].bet_amount)/float(winner_total_bets)
+		if not snails_bet_pool.player_2[str(winner_node.racer_number)].bet_amount == 0:
+			snails_bet_pool.player_2[str(winner_node.racer_number)].participation = float(snails_bet_pool.player_2[str(winner_node.racer_number)].bet_amount)/float(winner_total_bets)
+		snails_bet_pool.player_2.reward = roundi(total_bets * snails_bet_pool.player_2[str(winner_node.racer_number)].participation)
+		snails_bet_pool.player_1.reward = roundi(total_bets * snails_bet_pool.player_1[str(winner_node.racer_number)].participation)
+		snails_bet_pool.player_1.total_bet = snails_bet_pool.player_1["1"].bet_amount + snails_bet_pool.player_1["2"].bet_amount + snails_bet_pool.player_1["3"].bet_amount
+		snails_bet_pool.player_2.total_bet = snails_bet_pool.player_2["1"].bet_amount + snails_bet_pool.player_2["2"].bet_amount + snails_bet_pool.player_2["3"].bet_amount
+		Globals.money.player_1 += snails_bet_pool.player_1.reward
+		Globals.money.player_2 += snails_bet_pool.player_2.reward
+
+func start_race(bets_pool):
+	snails_bet_pool = bets_pool
+
 	for racer: Racer in $Racers.get_children():
 		racer.set_physics_process(true)
+		$UI/PlayerOptions.start_race()
+		$UI/PlayerOptions2.start_race()
 
 func _on_restart_pressed():
 	winner = ""

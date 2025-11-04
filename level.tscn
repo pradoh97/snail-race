@@ -1,34 +1,21 @@
-[gd_scene load_steps=16 format=3 uid="uid://d1sxs5ucwt5cw"]
+[gd_scene load_steps=9 format=3 uid="uid://d1sxs5ucwt5cw"]
 
 [ext_resource type="Script" uid="uid://djv7ewwf01a1e" path="res://level.gd" id="1_vonw3"]
 [ext_resource type="PackedScene" uid="uid://deu8jlcltfg5f" path="res://finish_line.tscn" id="2_oi3di"]
 [ext_resource type="PackedScene" uid="uid://djrkl3l50j1u8" path="res://racer/snail.tscn" id="3_0b4ue"]
 [ext_resource type="PackedScene" uid="uid://droahx1p02vyo" path="res://traps/strawberry.tscn" id="3_f2txt"]
 [ext_resource type="Script" uid="uid://bew22gi0e2nxs" path="res://ui.gd" id="5_f2txt"]
-[ext_resource type="PackedScene" uid="uid://vtel8wmabvdn" path="res://bets/small_bet.tscn" id="6_1ainy"]
-[ext_resource type="PackedScene" uid="uid://8gwjogvjh4px" path="res://bets/medium_bet.tscn" id="7_n6hdu"]
-[ext_resource type="Texture2D" uid="uid://bqshskxmw7x7g" path="res://coin.png" id="8_km5ld"]
+[ext_resource type="PackedScene" uid="uid://eh8txnyk01aj" path="res://player_options/player_options.tscn" id="6_n6hdu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oi3di"]
 size = Vector2(20, 111)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f2txt"]
-
-[sub_resource type="Gradient" id="Gradient_f2txt"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(0.3547109, 0.24792469, 0.06798274, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_1ainy"]
-gradient = SubResource("Gradient_f2txt")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0b4ue"]
-
-[sub_resource type="Gradient" id="Gradient_0b4ue"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(0.49491954, 0.35185727, 0.11118201, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_f2txt"]
-gradient = SubResource("Gradient_0b4ue")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ainy"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.72777236, 0.3263314, 0.25760457, 1)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_vonw3")
@@ -101,6 +88,7 @@ zoom = Vector2(2.5, 2.5)
 
 [node name="Snail" parent="Racers" instance=ExtResource("3_0b4ue")]
 position = Vector2(16, 0)
+max_speed = 50.0
 
 [node name="Snail2" parent="Racers" instance=ExtResource("3_0b4ue")]
 modulate = Color(0, 0.6429526, 0.9807605, 1)
@@ -113,190 +101,15 @@ position = Vector2(16, 100)
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("5_f2txt")
 
-[node name="Table" type="Control" parent="UI"]
-unique_name_in_owner = true
-layout_mode = 3
-anchor_left = 0.23784722
-anchor_top = 0.7453704
-anchor_right = 0.7604167
-anchor_bottom = 1.0092592
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="PanelContainer" type="PanelContainer" parent="UI/Table"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.027
-anchor_right = 0.133
-anchor_bottom = 1.0
-offset_left = -0.2539997
-offset_right = -0.06600189
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_f2txt")
-
-[node name="TextureRect" type="TextureRect" parent="UI/Table/PanelContainer"]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_1ainy")
-
-[node name="PanelContainer2" type="PanelContainer" parent="UI/Table"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.86
-anchor_right = 0.96700007
-anchor_bottom = 1.0
-offset_left = 0.27996826
-offset_right = -0.1340332
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_f2txt")
-metadata/_edit_use_anchors_ = true
-
-[node name="TextureRect" type="TextureRect" parent="UI/Table/PanelContainer2"]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_1ainy")
-
-[node name="PanelContainer3" type="PanelContainer" parent="UI/Table"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.71300006
-offset_bottom = 0.07698822
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_0b4ue")
-
-[node name="TextureRect" type="TextureRect" parent="UI/Table/PanelContainer3"]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_f2txt")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Table"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -29.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="UI/Table/VBoxContainer"]
-layout_mode = 2
-text = "Bets"
-horizontal_alignment = 1
-
-[node name="BetSpace" type="HBoxContainer" parent="UI/Table/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 66.695)
-layout_mode = 2
-alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Table/VBoxContainer/BetSpace"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Racer" type="Label" parent="UI/Table/VBoxContainer/BetSpace/VBoxContainer"]
-layout_mode = 2
-text = "Racer 1"
-horizontal_alignment = 1
-
-[node name="SmallBetButton" type="Button" parent="UI/Table/VBoxContainer/BetSpace/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-text = "   $1   "
-
-[node name="LargeBetButton" type="Button" parent="UI/Table/VBoxContainer/BetSpace/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-text = "   $5   "
-
-[node name="SmallBet" parent="UI/Table/VBoxContainer/BetSpace/VBoxContainer" instance=ExtResource("6_1ainy")]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-
-[node name="LargeBet" parent="UI/Table/VBoxContainer/BetSpace/VBoxContainer" instance=ExtResource("7_n6hdu")]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="UI/Table/VBoxContainer/BetSpace"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Racer" type="Label" parent="UI/Table/VBoxContainer/BetSpace/VBoxContainer2"]
-layout_mode = 2
-text = "Racer 2"
-horizontal_alignment = 1
-
-[node name="SmallBet" parent="UI/Table/VBoxContainer/BetSpace/VBoxContainer2" instance=ExtResource("6_1ainy")]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-
-[node name="LargeBet" parent="UI/Table/VBoxContainer/BetSpace/VBoxContainer2" instance=ExtResource("7_n6hdu")]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-
-[node name="SmallBetButton" type="Button" parent="UI/Table/VBoxContainer/BetSpace/VBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-text = "   $1   "
-
-[node name="LargeBetButton" type="Button" parent="UI/Table/VBoxContainer/BetSpace/VBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-text = "   $5   "
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="UI/Table/VBoxContainer/BetSpace"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Racer" type="Label" parent="UI/Table/VBoxContainer/BetSpace/VBoxContainer3"]
-layout_mode = 2
-text = "Racer 3"
-horizontal_alignment = 1
-
-[node name="SmallBet" parent="UI/Table/VBoxContainer/BetSpace/VBoxContainer3" instance=ExtResource("6_1ainy")]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-
-[node name="LargeBet" parent="UI/Table/VBoxContainer/BetSpace/VBoxContainer3" instance=ExtResource("7_n6hdu")]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-
-[node name="SmallBetButton" type="Button" parent="UI/Table/VBoxContainer/BetSpace/VBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-text = "   $1   "
-
-[node name="LargeBetButton" type="Button" parent="UI/Table/VBoxContainer/BetSpace/VBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-text = "   $5   "
-
 [node name="GameOver" type="PanelContainer" parent="UI"]
+z_index = 1
 anchors_preset = -1
-anchor_left = 0.31800002
-anchor_top = 0.31800002
+anchor_left = 0.321
+anchor_top = 0.296
 anchor_right = 0.68200004
 anchor_bottom = 0.68200004
-offset_left = -0.11380005
-offset_top = -0.06401062
+offset_left = -3.5697937
+offset_top = 0.19200134
 offset_right = 0.113708496
 offset_bottom = 0.063964844
 grow_horizontal = 2
@@ -305,7 +118,7 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="UI/GameOver"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 28
 text = "Race over"
 horizontal_alignment = 1
 
@@ -326,7 +139,12 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MoneyResult" type="Label" parent="UI/GameOver/VBoxContainer"]
+[node name="MoneyResultPlayer1" type="Label" parent="UI/GameOver/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="MoneyResultPlayer2" type="Label" parent="UI/GameOver/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 horizontal_alignment = 1
@@ -354,40 +172,45 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "   Nah man, I'm done   "
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+[node name="PlayerOptions" parent="UI" instance=ExtResource("6_n6hdu")]
+anchor_left = 0.028
+anchor_top = 0.91400003
+anchor_right = 0.028
+anchor_bottom = 0.91400003
+offset_left = -1.2560005
+offset_top = -210.27203
+offset_right = 415.744
+offset_bottom = -0.2720337
+
+[node name="PlayerOptions2" parent="UI" instance=ExtResource("6_n6hdu")]
+anchor_left = 0.97300005
+anchor_top = 0.91400003
+anchor_right = 0.97300005
+anchor_bottom = 0.91400003
+offset_left = -416.896
+offset_top = -210.27203
+offset_right = 0.104003906
+offset_bottom = -0.2720337
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ainy")
+player_name = "Player 2"
+
+[node name="StartRace" type="Button" parent="UI"]
 anchors_preset = -1
-anchor_left = 0.030000001
-anchor_top = 0.887
-anchor_right = 0.23900001
-anchor_bottom = 0.887
-offset_left = 0.43999863
-offset_top = 0.22399902
-offset_right = -0.32800293
-offset_bottom = 38.224
+anchor_left = 0.5
+anchor_top = 0.91400003
+anchor_right = 0.5
+anchor_bottom = 0.91400003
+offset_left = -80.0
+offset_top = -53.272034
+offset_right = 81.0
+offset_bottom = -0.2720337
 grow_horizontal = 2
-theme_override_constants/separation = 16
-
-[node name="TextureRect" type="TextureRect" parent="UI/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("8_km5ld")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/HBoxContainer/HBoxContainer"]
-layout_mode = 2
+grow_vertical = 0
 theme_override_font_sizes/font_size = 32
-text = "$"
-
-[node name="CurrentMoney" type="Label" parent="UI/HBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "0"
+text = "    RACE!    "
 
 [connection signal="body_entered" from="RaceTrack/FinishLine" to="." method="_on_finish_line_body_entered"]
 [connection signal="body_entered" from="RaceTrack/FullStop" to="." method="_on_full_stop_body_entered"]
 [connection signal="pressed" from="UI/GameOver/VBoxContainer/VBoxContainer/Restart" to="UI" method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/GameOver/VBoxContainer/VBoxContainer/Quit" to="UI" method="_on_quit_pressed"]
+[connection signal="pressed" from="UI/StartRace" to="UI" method="_on_start_race_pressed"]

@@ -3,75 +3,36 @@ class_name UI
 
 signal restart_pressed
 
-var last_bet = {
-	"texture": null,
-	"money": 0,
-	"racer": 0
-}
+var player_1_balance_label: Label
+var player_2_balance_label: Label
 
 func _ready():
-	%CurrentMoney.text = str(Globals.money)
 	$GameOver.visible = false
-
-	for container in %BetSpace.get_children():
-		var small_button: Button = container.get_node("SmallBetButton")
-
-		small_button.pressed.connect(func():
-			last_bet.texture = small_button.get_parent().get_node("SmallBet")
-			last_bet.texture.visible = true
-			last_bet.money = 1
-			last_bet.racer = container.get_node("Racer").text[-1]
-			small_button.visible = false
-			start_race()
-		)
-		var large_button: Button = container.get_node("LargeBetButton")
-		large_button.pressed.connect(func():
-			last_bet.texture = large_button.get_parent().get_node("LargeBet")
-			last_bet.money = 5
-			last_bet.texture.visible = true
-			last_bet.racer = container.get_node("Racer").text[-1]
-			large_button.visible = false
-			start_race()
-		)
 
 func start_race():
+	var bets_pool = {}
+	bets_pool.player_1 = $PlayerOptions.get_bets()
+	bets_pool.player_2 = $PlayerOptions2.get_bets()
 	$GameOver.visible = false
-	get_parent().start_race()
-	hide_bet_options()
+	get_parent().start_race(bets_pool)
 
-func hide_bet_options():
-	for container in %BetSpace.get_children():
-		var small_button: Button = container.get_node("SmallBetButton")
-		var large_button: Button = container.get_node("LargeBetButton")
-
-		small_button.disabled = true
-		large_button.disabled = true
-		small_button.visible = false
-		large_button.visible = false
-
-func show_bet_options():
-	for container in %BetSpace.get_children():
-		var small_button: Button = container.get_node("SmallBetButton")
-		var large_button: Button = container.get_node("LargeBetButton")
-
-		small_button.disabled = false
-		large_button.disabled = false
-		small_button.visible = true
-		large_button.visible = true
-		last_bet.texture.visible = false
-
-func race_over(winner: String):
+func race_over(winner: String, snails_bet_pool):
 	$GameOver.visible = true
-	%Winner.text = winner
-	if winner == last_bet.racer:
-		%MoneyResult.text = "You won +$"
-		Globals.money += last_bet.money
+	%Winner.text = "Snail " + str(winner)
+	var player_1_gains = snails_bet_pool.player_1.reward - snails_bet_pool.player_1.total_bet
+	var player_2_gains = snails_bet_pool.player_2.reward - snails_bet_pool.player_2.total_bet
+	if player_1_gains > 0:
+		$GameOver/VBoxContainer/MoneyResultPlayer1.text = "Player 1 won $" + str(player_1_gains)
+	elif player_1_gains == 0:
+		$GameOver/VBoxContainer/MoneyResultPlayer1.text = "Break even for player 1"
 	else:
-		%MoneyResult.text = "You lost -$"
-		Globals.money -= last_bet.money
-	%MoneyResult.text +=  str(last_bet.money)
-	%CurrentMoney.text = str(Globals.money)
-
+		$GameOver/VBoxContainer/MoneyResultPlayer1.text = "Player 1 lost $" + str(player_1_gains)
+	if player_2_gains > 0:
+		$GameOver/VBoxContainer/MoneyResultPlayer2.text = "Player 2 won: $" + str(player_2_gains)
+	elif player_2_gains == 0:
+		$GameOver/VBoxContainer/MoneyResultPlayer2.text = "Break even for player 2"
+	else:
+		$GameOver/VBoxContainer/MoneyResultPlayer2.text = "Player 2 lost $" + str(player_2_gains)
 
 func _on_quit_pressed():
 	get_tree().quit()
@@ -79,5 +40,8 @@ func _on_quit_pressed():
 
 func _on_restart_pressed():
 	$GameOver.visible = false
-	show_bet_options()
 	restart_pressed.emit()
+
+
+func _on_start_race_pressed():
+	start_race()

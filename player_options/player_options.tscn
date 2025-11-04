@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://eh8txnyk01aj"]
+
+[ext_resource type="PackedScene" uid="uid://dj4g5k1q6ra57" path="res://player_options/player_balance.tscn" id="1_y1ena"]
+[ext_resource type="Script" uid="uid://bfkhptlfkel25" path="res://player_options/player_options.gd" id="1_y7ucc"]
+[ext_resource type="PackedScene" uid="uid://pe8whrv0a83j" path="res://player_options/racer_bet_options.tscn" id="2_y7ucc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y1ena"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.33488354, 0.4816615, 0.62169653, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y7ucc"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 1, 1, 0.74509805)
+
+[node name="PlayerOptions" type="PanelContainer"]
+anchors_preset = -1
+anchor_left = 0.026
+anchor_top = 0.93100005
+anchor_right = 0.026
+anchor_bottom = 0.93100005
+offset_left = 0.048000336
+offset_top = -210.28802
+offset_right = 316.048
+offset_bottom = -11.288025
+theme_override_styles/panel = SubResource("StyleBoxFlat_y1ena")
+script = ExtResource("1_y7ucc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="PlayerName" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "[Player name]"
+horizontal_alignment = 1
+
+[node name="Balance" parent="VBoxContainer" instance=ExtResource("1_y1ena")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_y7ucc")
+
+[node name="HboxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 19
+alignment = 1
+
+[node name="RacerBetOptions" parent="VBoxContainer/HboxContainer" instance=ExtResource("2_y7ucc")]
+layout_mode = 2
+racer_name = "Snail 1"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HboxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxFlat_y7ucc")
+
+[node name="RacerBetOptions2" parent="VBoxContainer/HboxContainer" instance=ExtResource("2_y7ucc")]
+layout_mode = 2
+racer_name = "Snail 2"
+
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/HboxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxFlat_y7ucc")
+
+[node name="RacerBetOptions3" parent="VBoxContainer/HboxContainer" instance=ExtResource("2_y7ucc")]
+layout_mode = 2
+racer_name = "Snail 3"
+
+[connection signal="balance_drained" from="VBoxContainer/Balance" to="." method="_on_balance_balance_drained"]
+[connection signal="balance_restored" from="VBoxContainer/Balance" to="." method="_on_balance_balance_restored"]
+[connection signal="bet_decreased" from="VBoxContainer/HboxContainer/RacerBetOptions" to="VBoxContainer/Balance" method="_on_racer_bet_options_bet_decreased"]
+[connection signal="bet_increased" from="VBoxContainer/HboxContainer/RacerBetOptions" to="VBoxContainer/Balance" method="_on_racer_bet_options_bet_increased"]
+[connection signal="bet_decreased" from="VBoxContainer/HboxContainer/RacerBetOptions2" to="VBoxContainer/Balance" method="_on_racer_bet_options_bet_decreased"]
+[connection signal="bet_increased" from="VBoxContainer/HboxContainer/RacerBetOptions2" to="VBoxContainer/Balance" method="_on_racer_bet_options_bet_increased"]
+[connection signal="bet_decreased" from="VBoxContainer/HboxContainer/RacerBetOptions3" to="VBoxContainer/Balance" method="_on_racer_bet_options_bet_decreased"]
+[connection signal="bet_increased" from="VBoxContainer/HboxContainer/RacerBetOptions3" to="VBoxContainer/Balance" method="_on_racer_bet_options_bet_increased"]
