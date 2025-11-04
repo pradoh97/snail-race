@@ -1,3 +1,6 @@
 extends Node
 
-var money = 20
+var money = {
+	"player_1": 20,
+	"player_2": 20
+}

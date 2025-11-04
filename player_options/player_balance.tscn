@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj4g5k1q6ra57"]
+
+[ext_resource type="Texture2D" uid="uid://bqshskxmw7x7g" path="res://coin.png" id="1_nny5u"]
+[ext_resource type="Script" uid="uid://dcqrg8u4ot5xv" path="res://player_options/player_balance.gd" id="1_vata7"]
+
+[node name="PlayerBalance" type="HBoxContainer"]
+alignment = 1
+script = ExtResource("1_vata7")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Balance"
+
+[node name="HboxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="TextureRect" type="TextureRect" parent="HboxContainer"]
+layout_mode = 2
+texture = ExtResource("1_nny5u")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HboxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HboxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "$"
+
+[node name="CurrentBalance" type="Label" parent="HboxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "0"

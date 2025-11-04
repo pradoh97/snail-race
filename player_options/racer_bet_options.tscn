@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=3 uid="uid://pe8whrv0a83j"]
+
+[ext_resource type="Script" uid="uid://40v8qwypf580" path="res://player_options/racer_bet_options.gd" id="1_tkthf"]
+[ext_resource type="Texture2D" uid="uid://bqshskxmw7x7g" path="res://coin.png" id="2_pma0t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o4ji"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.13682577, 0.13682574, 0.13682571, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wfvgo"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.39308554, 0.3930855, 0.39308548, 0.43137255)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="RacerBetOptions" type="VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+script = ExtResource("1_tkthf")
+
+[node name="RacerName" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "[Racer name]"
+
+[node name="IncreaseBet" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_0o4ji")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_wfvgo")
+button_mask = 3
+keep_pressed_outside = true
+text = "+"
+
+[node name="DecreaseBet" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_0o4ji")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_wfvgo")
+action_mode = 0
+button_mask = 3
+text = "-"
+
+[node name="Money" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 7
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Money"]
+layout_mode = 2
+texture = ExtResource("2_pma0t")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Money"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Money/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "$"
+
+[node name="CurrentMoney" type="Label" parent="Money/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "0"
+
+[connection signal="pressed" from="IncreaseBet" to="." method="_on_increase_bet_pressed"]
+[connection signal="pressed" from="DecreaseBet" to="." method="_on_decrease_bet_pressed"]

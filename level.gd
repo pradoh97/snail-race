@@ -24,6 +24,8 @@ func _on_full_stop_body_entered(body):
 func start_race():
 	for racer: Racer in $Racers.get_children():
 		racer.set_physics_process(true)
+		$UI/PlayerOptions.disable_options()
+		$UI/PlayerOptions2.disable_options()
 
 func _on_restart_pressed():
 	winner = ""
@@ -34,3 +36,8 @@ func place_traps():
 	for trap: Trap in %Traps.get_children():
 		random_position = randi_range(%TrapsSafeMargins.get_child(0).global_position.x, %TrapsSafeMargins.get_child(1).global_position.x)
 		trap.global_position.x = random_position
+
+
+func _on_start_race_pressed():
+	$UI/StartRace.visible = false
+	start_race()
