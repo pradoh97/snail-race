@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1sxs5ucwt5cw"]
+[gd_scene load_steps=11 format=3 uid="uid://d1sxs5ucwt5cw"]
 
 [ext_resource type="Script" uid="uid://djv7ewwf01a1e" path="res://level.gd" id="1_vonw3"]
 [ext_resource type="Texture2D" uid="uid://io7ta4lowauo" path="res://Field_2.jpg" id="2_n6hdu"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://droahx1p02vyo" path="res://traps/strawberry.tscn" id="3_f2txt"]
 [ext_resource type="Script" uid="uid://bew22gi0e2nxs" path="res://ui.gd" id="5_f2txt"]
 [ext_resource type="PackedScene" uid="uid://eh8txnyk01aj" path="res://player_options/player_options.tscn" id="6_n6hdu"]
+[ext_resource type="AudioStream" uid="uid://dm176lkokcqsd" path="res://audio/everybody-dance-airstream-main-version-41846-01-41-looped.mp3" id="8_km5ld"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oi3di"]
 size = Vector2(24, 376)
@@ -231,6 +232,10 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 text = "    RACE!    "
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_km5ld")
+parameters/looping = true
 
 [connection signal="body_entered" from="RaceTrack/FinishLine" to="." method="_on_finish_line_body_entered"]
 [connection signal="body_entered" from="RaceTrack/FullStop" to="." method="_on_full_stop_body_entered"]
