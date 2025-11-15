@@ -48,6 +48,7 @@ func start_race(bets_pool):
 		$UI/StartRace.visible = false
 		$UI/PlayerOptions.start_race()
 		$UI/PlayerOptions2.start_race()
+	$AudioStreamPlayer.play()
 
 
 func place_traps():
@@ -61,9 +62,9 @@ func _on_player_options_place_trap(racer):
 	var trap = %Traps.get_children()[0].duplicate()
 	var random_position = randi_range(%TrapsSafeMargins.get_child(0).global_position.x, %TrapsSafeMargins.get_child(1).global_position.x)
 	var vertical_position = 0
+	%Traps.add_child(trap)
 	vertical_position = %Tracks.get_child(racer - 1).global_position.y
 	trap.global_position = Vector2(random_position, vertical_position)
-	%Traps.add_child(trap)
 
 
 func _on_ui_next_race_pressed():

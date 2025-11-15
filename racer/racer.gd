@@ -62,7 +62,7 @@ func move():
 
 func go_to_trap():
 	var tween: Tween = create_tween()
-	tween.tween_property(self, "position", trap_in_sight.get_consume_area(), 1)
+	tween.tween_property(self, "global_position", trap_in_sight.get_consume_area(), 1)
 	tween.finished.connect($AnimationPlayer.play.bind("eating"))
 
 func fall_for_trap():

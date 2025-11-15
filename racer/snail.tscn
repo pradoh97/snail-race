@@ -55,6 +55,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Animated/Polygon2D:polygon")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(-19, 13, 13, 13, 11, 11, 9, 11, 8, 10, 8, 9, 10, 8, 11, 7, 12, 5, 12, 2, 11, -2.0000002, 10, -5, 7, -7, 9, -13, 4, -8, 1, -8, -2, -13, -2, -7, -3.9999995, -5, -11, -8, -6.9999995, -2.0000002, -7.9999995, 3, -7.9999995, 7, -6.9999995, 8, -4.9999995, 10)]
+}
 
 [sub_resource type="Animation" id="Animation_yngwn"]
 resource_name = "eating"
@@ -97,7 +109,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_lk8fo"]
 resource_name = "new_animation"
-length = 0.8
+length = 1.4
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -111,6 +123,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, -0.2303834612632513, 0.34557519189487745]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Animated/Polygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7, 0.9, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(-19, 13, 14.157892, 13, 15.078945, 11, 9, 11, 8, 10, 8, 9, 10, 8, 11, 7, 12, 5, 12, 2, 11, -2.0000002, 10, -5, 7, -7, 9, -13, 4, -8, 1, -8, -2, -13, -2, -7, -3.9999995, -5, -11, -8, -6.9999995, -2.0000002, -7.9999995, 3, -7.9999995, 7, -6.9999995, 8, -4.9999995, 10), PackedVector2Array(-19, 13, 14.157892, 13, 15.078945, 11, 9, 11, 8, 10, 8, 9, 10, 8, 11, 7, 12, 5, 12, 2, 11, -2.0000002, 10, -5, 7, -7, 9, -13, 4, -8, 1, -8, -2, -13, -2, -7, -3.9999995, -5, -11, -8, -6.9999995, -2.0000002, -7.9999995, 3, -7.9999995, 7, -6.9999995, 8, -4.9999995, 10), PackedVector2Array(-11.741163, 13.138563, 15.994457, 13, 15.071411, 11, 9, 11, 8, 10, 8, 9, 10, 8, 11, 7, 12, 5, 12, 2, 11, -2.0000002, 10, -5, 7, -7, 9, -13, 4, -8, 1, -8, -2, -13, -2, -7, -3.9999995, -5, -11, -8, -6.9999995, -2.0000002, -7.9999995, 3, -7.9999995, 7, -6.9999995, 8, -4.9999995, 10), PackedVector2Array(-11.741163, 13.138563, 15.994457, 13, 15.071411, 11, 9, 11, 8, 10, 8, 9, 10, 8, 11, 7, 12, 5, 12, 2, 11, -2.0000002, 10, -5, 7, -7, 9, -13, 4, -8, 1, -8, -2, -13, -2, -7, -3.9999995, -5, -11, -8, -6.9999995, -2.0000002, -7.9999995, 3, -7.9999995, 7, -6.9999995, 8, -4.9999995, 10), PackedVector2Array(-19, 13, 13, 13, 11, 11, 9, 11, 8, 10, 8, 9, 10, 8, 11, 7, 12, 5, 12, 2, 11, -2.0000002, 10, -5, 7, -7, 9, -13, 4, -8, 1, -8, -2, -13, -2, -7, -3.9999995, -5, -11, -8, -6.9999995, -2.0000002, -7.9999995, 3, -7.9999995, 7, -6.9999995, 8, -4.9999995, 10)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Animated/Head:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.3, 0.36614054, 0.41, 0.44117936, 0.5, 0.9, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-2, -25), Vector2(0.9914377, -25), Vector2(1.189, -24.785), Vector2(1.379, -25.27), Vector2(1.548, -24.832), Vector2(1.701, -25.269), Vector2(2, -25), Vector2(2, -25), Vector2(-2, -25)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lk8fo"]
